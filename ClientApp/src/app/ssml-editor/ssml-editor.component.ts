@@ -92,4 +92,13 @@ export class SsmlEditorComponent implements OnInit {
     const text = event?.clipboardData?.getData("text/plain");
     document.execCommand("insertHTML", false, text);
   }
+
+  voices: string[] = [
+    "en-US-JessaNeural",
+    "en-US-GuyNeural",
+    "en-GB-GeorgeNeural",
+    "fr-FR-DeniseNeural",
+    "de-DE-KlausNeural",
+    "es-ES-ElviraNeural"
+  ]; // Added static list of voices
 }
