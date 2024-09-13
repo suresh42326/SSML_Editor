@@ -13,7 +13,7 @@
           <button class="buttons lightblue action-button" (click)="pitchDown()" title="Pitch the sound down"><i class="fa fa-minus-circle" aria-hidden="true"></i> <span class="mobile-text">Pitch</span></button>
           <span class="align-right">
             <button class="buttons lightblue action-button" (click)="undo()" title="Undo the last action"><i class="fa fa-undo" aria-hidden="true"></i> <span class="mobile-text">Undo</span></button>
-            <select class="buttons lightblue action-button" title="Select Voice">
+            <select class="buttons lightblue action-button" title="Select Voice" [(ngModel)]="selectedVoice"> <!-- Bind selectedVoice -->
               <option *ngFor="let voice of voices" [value]="voice">{{ voice }}</option>
             </select> <!-- Added dropdown for voices -->
           </span>

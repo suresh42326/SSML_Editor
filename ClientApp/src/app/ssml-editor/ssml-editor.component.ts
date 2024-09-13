@@ -56,35 +56,36 @@ export class SsmlEditorComponent implements OnInit {
       }
     });
 
-    // Replace elements
+    // Replace elements with SSML-compliant tags
     doc.querySelectorAll('.emphasis').forEach(el => {
       const emphasis = doc.createElement('emphasis');
-      emphasis.setAttribute('level', 'strong');
+      emphasis.setAttribute('level', 'strong'); // Change level as needed
       emphasis.innerHTML = el.innerHTML;
       el.replaceWith(emphasis);
     });
 
     doc.querySelectorAll('.fa-clock-o').forEach(el => {
       const breakEl = doc.createElement('break');
-      breakEl.setAttribute('time', '300ms');
+      breakEl.setAttribute('time', '300ms'); // Adjust time as needed
       el.replaceWith(breakEl);
     });
 
     doc.querySelectorAll('.pitch-up').forEach(el => {
       const prosody = doc.createElement('prosody');
-      prosody.setAttribute('pitch', '+3st');
+      prosody.setAttribute('pitch', '+3st'); // Adjust pitch as needed
       prosody.innerHTML = el.innerHTML;
       el.replaceWith(prosody);
     });
 
     doc.querySelectorAll('.pitch-down').forEach(el => {
       const prosody = doc.createElement('prosody');
-      prosody.setAttribute('pitch', '-3st');
+      prosody.setAttribute('pitch', '-3st'); // Adjust pitch as needed
       prosody.innerHTML = el.innerHTML;
       el.replaceWith(prosody);
     });
 
-    this.output.nativeElement.textContent = `<speak>${doc.body.innerHTML}</speak>`;
+    // Wrap the content in <speak> and <voice> tags
+    this.output.nativeElement.textContent = `<speak><voice name="${this.selectedVoice}">${doc.body.innerHTML}</voice></speak>`;
   }
 
   onPaste(event: ClipboardEvent) {
@@ -101,4 +102,6 @@ export class SsmlEditorComponent implements OnInit {
     "de-DE-KlausNeural",
     "es-ES-ElviraNeural"
   ]; // Added static list of voices
+
+  selectedVoice: string = this.voices[0]; // Default to the first voice
 }
